@@ -1,0 +1,7 @@
+{
+  "name": "memo-flash-mobile",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
