@@ -2,7 +2,7 @@
   <div id="container">
     <ion-list class="custom">
       <ion-input  [(ngModel)]="username"   errorText="Invalid Username" label="Username" label-placement="floating" fill="outline" placeholder="Enter Username"></ion-input>
-      <ion-input [(ngModel)]="password" errorText="Invalid Password" label="Password" label-placement="floating" fill="outline" placeholder="Enter Password"></ion-input>
+      <ion-input [(ngModel)]="password" type="password" errorText="Invalid Password" label="Password" label-placement="floating" fill="outline" placeholder="Enter Password"></ion-input>
       <ion-button (click)="onLogin()">Login</ion-button>
     </ion-list>
   </div>

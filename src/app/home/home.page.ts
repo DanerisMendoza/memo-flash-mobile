@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import axios from 'axios';
 
 @Component({
   selector: 'app-home',
@@ -6,13 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  username : string = ""
-  password : string = ""
+  username: string = ""
+  password: string = ""
   constructor() { }
   ngOnInit(): void {
     console.log('mounted')
   }
-  onLogin() {
+
+  async onLogin() {
     const trimmedUsername = this.username.trim();
     const trimmedPassword = this.password.trim();
 
@@ -22,7 +24,15 @@ export class HomePage {
       return; // Exit the function if validation fails
     }
 
-    console.log(this.username);
-    console.log(this.password);
+    try {
+      const payload = {
+        username: trimmedUsername,
+        password: trimmedPassword
+      };
+      const response = await axios.post('http://localhost:3000/api/login', payload);
+      console.log('Login successful:', response.data);
+    } catch (error) {
+      console.error('Login failed:', error);
+    }
   }
 }
