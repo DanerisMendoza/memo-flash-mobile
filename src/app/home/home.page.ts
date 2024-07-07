@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,7 @@ import axios from 'axios';
 export class HomePage {
   username: string = ""
   password: string = ""
-  constructor() { }
+  constructor(private router: Router) { }
   ngOnInit(): void {
     console.log('mounted')
   }
@@ -30,6 +31,9 @@ export class HomePage {
         password: trimmedPassword
       };
       const response = await axios.post('http://localhost:3000/api/login', payload);
+      if(response.data.status === 200){
+        this.router.navigate(['/dashboard']);
+      }
       console.log('Login successful:', response.data);
     } catch (error) {
       console.error('Login failed:', error);
